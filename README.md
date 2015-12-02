@@ -1,6 +1,7 @@
 #Payco Client Library for PHP#
 
 [![Build Status](https://travis-ci.org/UPGcarts/clientlibrary.svg?branch=master)](https://travis-ci.org/UPGcarts/clientlibrary)
+[![Codacy Badge](https://api.codacy.com/project/badge/grade/7710d14f3d9f4f54bc4cb1892f19cce3)](https://www.codacy.com/app/christine-jamieson/clientlibrary)
 
 Client Library for the Payco API for php.
 
