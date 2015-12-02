@@ -17,5 +17,6 @@ GIT_IGNORED/*
 .idea/
 
 #### composer
+composer.lock
 bin/
 vendor/

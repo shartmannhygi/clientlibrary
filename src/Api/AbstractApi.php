@@ -108,11 +108,7 @@ abstract class AbstractApi
      * 401 (Unauthorized) validation errors
      * @link http://www.manula.com/manuals/payco/payment-api/hostedpagesdraft/en/topic/genera-rules
      */
-    const ALLOWED_HTTP_STATUS_CODES = array(
-        200,
-        400,
-        401
-    );
+    protected $allowedHttpStatusCodes = array(200, 400, 401);
 
     /**
      * For php 5.5 and above the new CURLFile has to be used
@@ -212,7 +208,7 @@ abstract class AbstractApi
      */
     private function processResponse()
     {
-        if (!in_array($this->responseHttpCode, self::ALLOWED_HTTP_STATUS_CODES)) {
+        if (!in_array($this->responseHttpCode, $this->allowedHttpStatusCodes)) {
             throw new InvalidHttpResponseCode($this->responseHttpCode, $this->responseRaw);
         }
 
