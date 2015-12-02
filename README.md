@@ -1,5 +1,7 @@
 #Payco Client Library for PHP#
 
+[![Build Status](https://travis-ci.org/UPGcarts/clientlibrary.svg?branch=master)](https://travis-ci.org/UPGcarts/clientlibrary)
+
 Client Library for the Payco API for php.
 
 ##Current Issues##
