@@ -1,0 +1,21 @@
+### This is a Git Ignore File
+# Anything that you don't want either tracked or pushed up to the public repo should be here
+GIT_IGNORED/*
+
+#### Binary files we do not want
+*.tar
+*.gz
+*.7z
+*.bz
+*.bz2
+*.zip
+
+####  IDE Specific
+.project
+.buildpath
+.settings/*
+.idea/
+
+#### composer
+bin/
+vendor/

@@ -1,0 +1,76 @@
+<?php
+
+namespace Upg\Library\Tests\Mock\Mns;
+
+class MockProcessor implements \Upg\Library\Mns\ProcessorInterface
+{
+    public $data = array();
+    /**
+     * @param $merchantID This is the merchantID assigned by PayCo.
+     * @param $storeID This is the store ID of a merchant assigned by PayCo as a merchant can have more than one store.
+     * @param $orderNo This is the order number tyhat the shop has assigned
+     * @param $confirmationId The confirmation ID of the capture. Only sent for Notifications that belong to captures
+     * @param $merchantReference Reference that can be set by the merchant during the createTransaction call.
+     * @param $paymentReference The reference number of the
+     * @param $userID The unique user id of the customer.
+     * @param $resultCode Its the current status of the transaction/order. See documentaion for possible values
+     * @param $amount This is either the amount of an incoming payment or “0” in case of some status changes
+     * @param $currencyCode  Currency code according to ISO4217.
+     * @param $previousTransactionStatus Same status possible like within resultCode. Is the previous status
+     * @param $transactionStatus Current status of the transaction. Same values as resultCode
+     * @param $orderStatus Possible values: PAID PAYPENDING PAYMENTFAILED CHARGEBACK CLEARED. Status of order
+     * @param $previousOrderStatus Its the previous status of the order. Same values as $orderStatus
+     * @param $additionalInfo
+     * @param $timestamp Unix timestamp, Notification timestamp
+     * @param $version notification version (currently 1.5)
+     * @link http://www.manula.com/manuals/payco/payment-api/hostedpagesdraft/en/topic/notification-call
+     */
+    public function sendData(
+        $merchantID,
+        $storeID,
+        $orderNo,
+        $confirmationId,
+        $merchantReference,
+        $paymentReference,
+        $userID,
+        $resultCode,
+        $amount,
+        $currencyCode,
+        $previousTransactionStatus,
+        $transactionStatus,
+        $orderStatus,
+        $previousOrderStatus,
+        $additionalInfo,
+        $timestamp,
+        $version
+    ) {
+        $this->data = array(
+            'merchantID' => $merchantID,
+            'storeID' => $storeID,
+            'orderNo' => $orderNo,
+            'confirmationId' => $confirmationId,
+            'merchantReference' => $merchantReference,
+            'paymentReference' => $paymentReference,
+            'userID' => $userID,
+            'resultCode' => $resultCode,
+            'amount' => $amount,
+            'currencyCode' => $currencyCode,
+            'previousTransactionStatus' => $previousTransactionStatus,
+            'transactionStatus' => $transactionStatus,
+            'orderStatus' => $orderStatus,
+            'previousOrderStatus' => $previousOrderStatus,
+            'additionalInfo' => $additionalInfo,
+            'timestamp' => $timestamp,
+            'version' => $version
+        );
+    }
+
+    /**
+     * The run method used by the processor to run successfuly validated MNS notifications.
+     * This should not return anything
+     */
+    public function run()
+    {
+        return null;
+    }
+}
