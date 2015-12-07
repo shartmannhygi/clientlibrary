@@ -231,6 +231,14 @@ class GetCaptureStatusTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(0, $result->getData('resultCode'));
         $this->assertEmpty($result->getData('message'));
-        $this->assertEquals('PAID', $result->getData('status'));
+        $this->assertEquals('PAID', $result->getData('captureStatus'));
+
+        $additionalData = $result->getData('additionalData');
+
+        $this->assertEquals(100, $additionalData['transactionAmount']);
+        $this->assertEquals(100, $additionalData['capturedAmount']);
+        $this->assertEquals(100, $additionalData['paidAmount']);
+
+        $this->assertEquals('EUR', $additionalData['transactionCurrency']);
     }
 }
