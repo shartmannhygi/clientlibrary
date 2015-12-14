@@ -7,7 +7,7 @@ Client Library for the Payco API for php.
 
 ##Current Issues##
 Currently there are issues with some of the calls these are:
- * CreateTransaction : The url field is not returned in the response for Hosted Payment Requests
+ * CreateTransaction : The url field was renamed from the API documentation
  * UpdateTransaction : Currently Incomplete
 
 ##Using the Library##

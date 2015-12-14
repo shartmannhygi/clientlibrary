@@ -172,8 +172,7 @@ class CreateTransactionTest extends \PHPUnit_Framework_TestCase
         $result = $apiEndPoint->sendRequest();
 
         $this->assertEquals(0, $result->getData('resultCode'));
-        $this->assertGreaterThan(1, count($result->getData('allowedPaymentMethods')));
-        $this->assertNotEmpty($result->getData('url'));
+        $this->assertNotEmpty($result->getData('redirectUrl'));
     }
 
     public function testSuccessfulApiHostedAfterIntegrationCall()
@@ -208,8 +207,7 @@ class CreateTransactionTest extends \PHPUnit_Framework_TestCase
         $result = $apiEndPoint->sendRequest();
 
         $this->assertEquals(0, $result->getData('resultCode'));
-        $this->assertGreaterThan(1, count($result->getData('allowedPaymentMethods')));
-        $this->assertNotEmpty($result->getData('url'));
+        $this->assertNotEmpty($result->getData('redirectUrl'));
     }
 
     /**
