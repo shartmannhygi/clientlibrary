@@ -33,14 +33,18 @@ class HandlerTest extends \PHPUnit_Framework_TestCase
     public function testSuccessfulCallBack()
     {
         $data = array(
+            'notificationType' => 'PAYMENT_INSTRUMENT_SELECTION',
             'merchantID' => 10,
             'storeID' => 'store',
             'orderID' => 10,
+            'paymentMethod' => 'CC',
             'resultCode' => 0,
             'merchantReference' => 'test',
+            'additionalInformation' => '{"test":1}',
+            'paymentInstrumentID' => 1,
             'message' => 'test',
             'salt' => "randomSalt",
-            'mac' => "5074b6c68e7261dc2f0f67c97842389a327b7084"
+            'mac' => "2429c36de46b23b9f5920de18be90e4a5a58439b"
         );
 
         $processor = new MockProcessor();
@@ -51,6 +55,8 @@ class HandlerTest extends \PHPUnit_Framework_TestCase
         $expected = json_encode(array('url'=>'http://something.com/success'));
 
         $this->assertJsonStringEqualsJsonString($expected, $result);
+
+        $data['additionalInformation'] = array('test'=>1);
 
         $this->assertArraySubset($processor->data, $data);
     }
@@ -81,11 +87,15 @@ class HandlerTest extends \PHPUnit_Framework_TestCase
     public function testMacValidationException()
     {
         $data = array(
+            'notificationType' => 'PAYMENT_INSTRUMENT_SELECTION',
             'merchantID' => 10,
             'storeID' => 'store',
             'orderID' => 10,
+            'paymentMethod' => 'CC',
             'resultCode' => 0,
             'merchantReference' => 'test',
+            'additionalInformation' => '{test:1}',
+            'paymentInstrumentID' => 1,
             'message' => 'test',
             'salt' => "randomSalt",
             'mac' => "TESTMAC"

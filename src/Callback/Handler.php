@@ -34,9 +34,11 @@ class Handler
      * @var array
      */
     private $validParams = array(
+        'notificationType',
         'merchantID',
         'storeID',
         'orderID',
+        'paymentMethod',
         'resultCode',
         'salt',
         'mac'
@@ -44,7 +46,9 @@ class Handler
 
     private $optionalParam = array(
         'merchantReference',
-        'message'
+        'additionalInformation',
+        'paymentInstrumentID',
+        'message',
     );
 
     /**
@@ -90,15 +94,24 @@ class Handler
         $macCalculator = new MacCalculator($this->config, $this->data);
         $macCalculator->validateResponse();
 
+        $additionalInfo = array();
+        if(!empty($data['additionalInformation'])) {
+            $additionalInfo = json_decode($data['additionalInformation'], true);
+        }
+
         /**
          * Send the data to the processor
          */
         $this->processor->sendData(
+            $data['notificationType'],
             $data['merchantID'],
             $data['storeID'],
             $data['orderID'],
+            $data['paymentMethod'],
             $data['resultCode'],
             $data['merchantReference'],
+            $data['paymentInstrumentID'],
+            $additionalInfo,
             $data['message']
         );
 
