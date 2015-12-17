@@ -2,6 +2,8 @@
 
 namespace Upg\Library\Request\Objects;
 
+use Upg\Library\Validation\Helper\Regex;
+
 /**
  * Class Address
  * For JSON address objects
@@ -191,8 +193,8 @@ class Address extends AbstractObject
 
         $validationData['street'][] = array('name' => 'required', 'value' => null, 'message' => "Street is required");
         $validationData['street'][] = array(
-            'name' => 'AlphaNumHyphen',
-            'value' => null,
+            'name' => 'Regex',
+            'value' => Regex::REGEX_FULL_ALPHANUMERIC,
             'message' => "Street must be alpha numeric"
         );
         $validationData['street'][] = array(
@@ -203,8 +205,8 @@ class Address extends AbstractObject
 
         $validationData['no'][] = array('name' => 'required', 'value' => null, 'message' => "House number is required");
         $validationData['no'][] = array(
-            'name' => 'AlphaNumeric',
-            'value' => null,
+            'name' => 'Regex',
+            'value' => Regex::REGEX_FULL_ALPHANUMERIC,
             'message' => "House number must be alpha numeric"
         );
         $validationData['no'][] = array(
@@ -219,8 +221,8 @@ class Address extends AbstractObject
             'message' => "ZIP/Postal Code is required"
         );
         $validationData['zip'][] = array(
-            'name' => 'AlphaNumeric',
-            'value' => null,
+            'name' => 'Regex',
+            'value' => Regex::REGEX_FULL_ALPHANUMERIC,
             'message' => "ZIP/Postal must be alpha numeric"
         );
         $validationData['zip'][] = array(
@@ -231,8 +233,8 @@ class Address extends AbstractObject
 
         $validationData['city'][] = array('name' => 'required', 'value' => null, 'message' => "City is required");
         $validationData['city'][] = array(
-            'name' => 'AlphaNumeric',
-            'value' => null,
+            'name' => 'Regex',
+            'value' => Regex::REGEX_FULL_ALPHANUMERIC,
             'message' => "City must be alpha numeric"
         );
         $validationData['city'][] = array(
@@ -249,8 +251,8 @@ class Address extends AbstractObject
         );
 
         $validationData['state'][] = array(
-            'name' => 'Alpha',
-            'value' => null,
+            'name' => 'Regex',
+            'value' => Regex::REGEX_FULL_ALPHA,
             'message' => "State must be alpha only"
         );
         $validationData['state'][] = array(

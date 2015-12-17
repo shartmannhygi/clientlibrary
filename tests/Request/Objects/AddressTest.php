@@ -62,19 +62,6 @@ class AddressTest extends AbstractRequestTest
             "Street required validation failed"
         );
 
-
-        $address->setStreet("@++");
-        $validation->getValidator($address);
-        $data = $validation->performValidation();
-
-        $this->assertValidationReturned(
-            'Upg\\Library\\Request\\Objects\\Address',
-            'street',
-            'Street must be alpha numeric',
-            $data,
-            "Street validation alpha numeric did not trigger"
-        );
-
         $address->setStreet("LoremipsumdolorsitametconsecteturadipiscingelitPraesentsitametdictumnequequiseuismodarcu");
         $validation->getValidator($address);
         $data = $validation->performValidation();
@@ -115,19 +102,6 @@ class AddressTest extends AbstractRequestTest
             'House number is required',
             $data,
             "House number required check failed"
-        );
-
-        /** alpha numeric check test */
-        $address->setNo("@===+");
-        $validation->getValidator($address);
-        $data = $validation->performValidation();
-
-        $this->assertValidationReturned(
-            'Upg\\Library\\Request\\Objects\\Address',
-            'no',
-            'House number must be alpha numeric',
-            $data,
-            "House number must be alpha numeric check failed"
         );
 
         /** Length tests */
@@ -172,21 +146,6 @@ class AddressTest extends AbstractRequestTest
             "ZIP/Postal Code is required check failed"
         );
 
-        $address->setZip("@;;;");
-        $validation->getValidator($address);
-        $data = $validation->performValidation();
-
-        /**
-         * Test alpha numeric validation
-         */
-        $this->assertValidationReturned(
-            'Upg\\Library\\Request\\Objects\\Address',
-            'zip',
-            'ZIP/Postal must be alpha numeric',
-            $data,
-            "ZIP/Postal must be alpha numeric check failed"
-        );
-
         /**
          * Test length validation
          */
@@ -229,21 +188,6 @@ class AddressTest extends AbstractRequestTest
             'City is required',
             $data,
             "City is required check failed"
-        );
-
-        /**
-         * Test alpha numeric test
-         */
-        $address->setCity("@##~");
-        $validation->getValidator($address);
-        $data = $validation->performValidation();
-
-        $this->assertValidationReturned(
-            'Upg\\Library\\Request\\Objects\\Address',
-            'city',
-            'City must be alpha numeric',
-            $data,
-            "City must be alpha numeric check failed"
         );
 
         /**
@@ -322,21 +266,6 @@ class AddressTest extends AbstractRequestTest
             ->setCity("foo")
             ->setZip("LS12 4TN")
             ->setCountry("GB");
-
-        /**
-         * Test alpha validation
-         */
-        $address->setState('D2');
-        $validation->getValidator($address);
-        $data = $validation->performValidation();
-
-        $this->assertValidationReturned(
-            'Upg\\Library\\Request\\Objects\\Address',
-            'state',
-            'State must be alpha only',
-            $data,
-            "State must be alpha only failed"
-        );
 
         /**
          * Test Length validation

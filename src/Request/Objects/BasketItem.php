@@ -3,6 +3,7 @@
 namespace Upg\Library\Request\Objects;
 
 use Upg\Library\Risk\RiskClass;
+use Upg\Library\Validation\Helper\Regex;
 
 /**
  * Class BasketItem
@@ -179,7 +180,7 @@ class BasketItem extends AbstractObject
 
         $validationData['basketItemID'][] = array(
             'name' => 'Regex',
-            'value' => '/^[a-zA-Z0-9]{1,20}$/',
+            'value' => '/^'.Regex::REGEX_PARTIAL_ALPHANUMERIC.'{1,20}$/',
             'message' => "basketItemID must be no more than 20 characters and alphanumeric"
         );
 
