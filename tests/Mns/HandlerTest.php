@@ -35,22 +35,19 @@ class HandlerTest extends \PHPUnit_Framework_TestCase
         $data = array(
             'merchantID' => 1,
             'storeID' => 2,
-            'orderNo' => 3,
-            'confirmationId' => 4,
+            'orderID' => 3,
+            'captureID' => 4,
             'merchantReference' => 5,
             'paymentReference' => 6,
             'userID' => 7,
-            'resultCode' => 8,
             'amount' => 9,
-            'currencyCode' => 10,
-            'previousTransactionStatus' => 11,
+            'currency' => 10,
             'transactionStatus' => 12,
             'orderStatus' => 13,
-            'previousOrderStatus' => 14,
-            'additionalInfo' => 15,
+            'additionalData' => 15,
             'timestamp' => 16,
             'version' => 1.5,
-            'mac' => '3cf5bedbf28c77ab98f57a630c466c0f3d7528cf',
+            'mac' => 'fbdc46ef7ab1ccf195781983caf60782a81bd0f1',
         );
 
         $processor = new \Upg\Library\Tests\Mock\Mns\MockProcessor();
@@ -68,23 +65,20 @@ class HandlerTest extends \PHPUnit_Framework_TestCase
     public function testParamNotProvidedException()
     {
         $data = array(
+            'merchantID' => 1,
             'storeID' => 2,
-            'orderNo' => 3,
-            'confirmationId' => 4,
+            'captureID' => 4,
             'merchantReference' => 5,
             'paymentReference' => 6,
             'userID' => 7,
-            'resultCode' => 8,
             'amount' => 9,
-            'currencyCode' => 10,
-            'previousTransactionStatus' => 11,
+            'currency' => 10,
             'transactionStatus' => 12,
             'orderStatus' => 13,
-            'previousOrderStatus' => 14,
-            'additionalInfo' => 15,
+            'additionalData' => 15,
             'timestamp' => 16,
             'version' => 1.5,
-            'mac' => '3cf5bedbf28c77ab98f57a630c466c0f3d7528cf',
+            'mac' => 'fbdc46ef7ab1ccf195781983caf60782a81bd0f1',
         );
 
         $processor = new \Upg\Library\Tests\Mock\Mns\MockProcessor();
@@ -100,22 +94,19 @@ class HandlerTest extends \PHPUnit_Framework_TestCase
         $data = array(
             'merchantID' => 1,
             'storeID' => 2,
-            'orderNo' => 3,
-            'confirmationId' => 4,
+            'orderID' => 3,
+            'captureID' => 4,
             'merchantReference' => 5,
             'paymentReference' => 6,
             'userID' => 7,
-            'resultCode' => 8,
             'amount' => 9,
-            'currencyCode' => 10,
-            'previousTransactionStatus' => 11,
+            'currency' => 10,
             'transactionStatus' => 12,
             'orderStatus' => 13,
-            'previousOrderStatus' => 14,
-            'additionalInfo' => 15,
+            'additionalData' => 15,
             'timestamp' => 16,
             'version' => 1.5,
-            'mac' => '3cf5bedbf28c77ab98f57a630c466c0f3dbbbbbb',
+            'mac' => 'fbdc46ef7ab1ccf195781983caf60782a81bb1e2',
         );
 
         $processor = new \Upg\Library\Tests\Mock\Mns\MockProcessor();

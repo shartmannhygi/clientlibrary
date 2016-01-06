@@ -46,13 +46,11 @@ class Handler
     private $requireFields = array(
         'merchantID',
         'storeID',
-        'orderNo',
+        'orderID',
         'paymentReference',
         'userID',
-        'resultCode',
         'amount',
-        'currencyCode',
-        'previousTransactionStatus',
+        'currency',
         'transactionStatus',
         'timestamp',
         'version',
@@ -64,11 +62,10 @@ class Handler
      * @var array
      */
     private $optionalFields = array(
-        'confirmationId',
+        'captureID',
         'merchantReference',
         'orderStatus',
-        'previousOrderStatus',
-        'additionalInfo'
+        'additionalData'
     );
 
     /**
@@ -113,19 +110,16 @@ class Handler
         $this->processor->sendData(
             $this->data['merchantID'],
             $this->data['storeID'],
-            $this->data['orderNo'],
-            $this->data['confirmationId'],
+            $this->data['orderID'],
+            $this->data['captureID'],
             $this->data['merchantReference'],
             $this->data['paymentReference'],
             $this->data['userID'],
-            $this->data['resultCode'],
             $this->data['amount'],
-            $this->data['currencyCode'],
-            $this->data['previousTransactionStatus'],
+            $this->data['currency'],
             $this->data['transactionStatus'],
             $this->data['orderStatus'],
-            $this->data['previousOrderStatus'],
-            $this->data['additionalInfo'],
+            $this->data['additionalData'],
             $this->data['timestamp'],
             $this->data['version']
         );
