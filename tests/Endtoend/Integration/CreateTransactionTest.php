@@ -173,6 +173,17 @@ class CreateTransactionTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(0, $result->getData('resultCode'));
         $this->assertNotEmpty($result->getData('redirectUrl'));
+
+        $ch = curl_init($result->getData('redirectUrl'));
+        curl_setopt($ch, CURLOPT_HEADER, true);
+        curl_setopt($ch, CURLOPT_NOBODY, true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+        curl_exec($ch);
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch);
+
+        $this->assertEquals(200, $httpCode);
     }
 
     public function testSuccessfulApiHostedAfterIntegrationCall()
@@ -208,6 +219,17 @@ class CreateTransactionTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(0, $result->getData('resultCode'));
         $this->assertNotEmpty($result->getData('redirectUrl'));
+
+        $ch = curl_init($result->getData('redirectUrl'));
+        curl_setopt($ch, CURLOPT_HEADER, true);
+        curl_setopt($ch, CURLOPT_NOBODY, true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+        curl_exec($ch);
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch);
+
+        $this->assertEquals(200, $httpCode);
     }
 
     /**
