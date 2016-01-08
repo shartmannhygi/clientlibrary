@@ -84,7 +84,8 @@ class AddressTest extends AbstractRequestTest
         $validation = new Validation();
 
         $address = new Address();
-        $address->setStreet("Test")
+        $address->setNo(null)
+            ->setStreet("Test")
             ->setZip("LS12 4TN")
             ->setCity("City")
             ->setState("State")

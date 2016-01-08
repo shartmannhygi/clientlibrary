@@ -20,7 +20,7 @@ class Address extends AbstractObject
     /**
      * @var string Alpha numerical string with the house number name no more than 32 character
      */
-    private $no;
+    private $no = 0000;
 
     /**
      * @var string Alpha numerical string with the zip/postal code no more than 16 character
