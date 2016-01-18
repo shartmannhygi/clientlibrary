@@ -37,6 +37,10 @@ The fields for the config that must be provided are:
  * ['sendRequestsWithSalt'] *bool* Automatically add salt to requests. In live this should be set to true and not false. However, for testing this can be false. By default this will be true if not specified.
  * ['baseUrl'] *string* Base URL of requests that should contain either https://www.payco-sandbox.de/2.0 or https://www.pay-co.net/2.0
 
+#### Log Levels
+When referencing log levels be sure to use the Psr\Log\LogLevel static constants
+E.g. `\Psr\Log\LogLevel::ALERT`
+
 ### Starting an API request ###
 The Library for requests is split in three parts:
 **Upg\Library\Request** contains the request classes.
