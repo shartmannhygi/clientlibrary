@@ -16,6 +16,10 @@ class Validation extends AbstractException
         parent::__construct("Validation did not pass");
     }
 
+    /**
+     * Get the validation errors
+     * @return array
+     */
     public function getVailidationResults()
     {
         return $this->vailidationResults;
