@@ -869,7 +869,7 @@ class CreateTransaction extends AbstractRequest
         $validationData['userRiskClass'][] = array(
             'name' => 'Callback',
             'value' => 'Upg\Library\Risk\RiskClass::validateRiskClass',
-            'message' => "userRiskClass must certain values or be empty"
+            'message' => "userRiskClass must contain certain values or be empty"
         );
 
         $validationData['userIpAddress'][] = array(
