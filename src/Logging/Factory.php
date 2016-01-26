@@ -26,7 +26,7 @@ class Factory
         $log = new Blank();
         if (array_key_exists($logLocation, self::$loggers)) {
             if ($config->getLogEnabled()) {
-                $log = new Logger();
+                $log = new Logger('payco');
                 $log->pushHandler(new StreamHandler($logLocation, $config->getLogLevel()));
             }
         }
