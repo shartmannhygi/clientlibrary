@@ -365,7 +365,7 @@ class CreateTransactionTest extends AbstractRequestTest
         $this->assertValidationReturned(
             'Upg\\Library\\Request\\CreateTransaction',
             'userRiskClass',
-            'userRiskClass must certain values or be empty',
+            'userRiskClass must contain certain values or be empty',
             $data,
             "userRiskClass must certain values or be empty failed"
         );
