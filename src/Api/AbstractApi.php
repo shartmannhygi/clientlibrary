@@ -97,6 +97,8 @@ abstract class AbstractApi
      */
     protected $logger;
 
+    private $timeLoggerValue;
+
     const SUBMIT_TYPE_URL_ENCODE = "urlencode";
     const SUBMIT_TYPE_MULTIPART = "multipart";
 
@@ -133,6 +135,7 @@ abstract class AbstractApi
         }
 
         $this->logger = \Upg\Library\Logging\Factory::getLogger($config, $config->getLogLocationRequest());
+        $this->timeLoggerValue = md5(time().':'.rand());
 
         return $this;
     }
@@ -182,6 +185,8 @@ abstract class AbstractApi
      */
     public function sendRequest()
     {
+        $timeStart = microtime(true);
+        $this->logger->debug("timelog-".$this->timeLoggerValue."--Started request: ".get_class($this->request));
         if (!$this->request instanceof AbstractRequest) {
             $this->logger->error("Request is not set or is not an AbstractRequest it is: " . get_class($this->request));
             throw new RequestNotSet();
@@ -191,10 +196,17 @@ abstract class AbstractApi
             $this->logger->debug("Processing request: " . serialize($this->requestRaw));
             $this->processRequest();
         }
+        $timeEnd = microtime(true);
+        $this->logger->debug("timelog-".$this->timeLoggerValue."--Process Request: ".($timeEnd - $timeStart));
+        $timeStart = microtime(true);
 
         if (!$this->responseRaw) {
             $this->postData();
         }
+
+        $timeEnd = microtime(true);
+        $this->logger->debug("timelog-".$this->timeLoggerValue."--Sent Request: ".($timeEnd - $timeStart));
+        $timeStart = microtime(true);
 
         return $this->processResponse();
     }
@@ -208,6 +220,7 @@ abstract class AbstractApi
      */
     private function processResponse()
     {
+        $timeStart = microtime(true);
         if (!in_array($this->responseHttpCode, $this->allowedHttpStatusCodes)) {
             throw new InvalidHttpResponseCode($this->responseHttpCode, $this->responseRaw);
         }
@@ -227,6 +240,9 @@ abstract class AbstractApi
             $response = new FailureResponse($this->config, $data);
             throw new ApiError($response, $this->responseRaw, $this->responseHttpCode);
         }
+
+        $timeEnd = microtime(true);
+        $this->logger->debug("timelog-".$this->timeLoggerValue."--Processed Request: ".($timeEnd - $timeStart));
 
         return $response;
     }
@@ -280,6 +296,12 @@ abstract class AbstractApi
         curl_setopt($ch, CURLOPT_POSTFIELDS, $this->requestRaw);
 
         $result = curl_exec($ch);
+
+        $curlFileTime = curl_getinfo($ch,CURLINFO_FILETIME);
+        $curlTotalTime = curl_getinfo($ch,CURLINFO_TOTAL_TIME);
+
+        $this->logger->debug("timelog-".$this->timeLoggerValue."--Curl Time FileTime: ".$curlFileTime);
+        $this->logger->debug("timelog-".$this->timeLoggerValue."--Curl Time TotalTime: ".$curlTotalTime);
 
         if (curl_errno($ch) > 0) {
             $this->logger->error("Got the following curl error: " . curl_error($ch) . ' ' . curl_errno($ch));

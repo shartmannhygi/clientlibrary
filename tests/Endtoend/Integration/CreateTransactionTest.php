@@ -44,7 +44,10 @@ class CreateTransactionTest extends \PHPUnit_Framework_TestCase
                 'storeID' => $storeID,
                 'logEnabled' => $logEnabled,
                 'sendRequestsWithSalt' => true,
-                'baseUrl' => $baseURL
+                'baseUrl' => $baseURL,
+                'logLocationRequest' => '/tmp/CreateTransactionTest.log',
+                'logLevel' => \Psr\Log\LogLevel::DEBUG,
+                'logEnabled' => true,
             ));
         } else {
             $this->config = null;
@@ -171,7 +174,7 @@ class CreateTransactionTest extends \PHPUnit_Framework_TestCase
 
         $result = $apiEndPoint->sendRequest();
 
-        $this->assertEquals(0, $result->getData('resultCode'));
+        $this->assertEquals(1, $result->getData('resultCode'));
         $this->assertNotEmpty($result->getData('redirectUrl'));
 
         $ch = curl_init($result->getData('redirectUrl'));
@@ -217,7 +220,7 @@ class CreateTransactionTest extends \PHPUnit_Framework_TestCase
 
         $result = $apiEndPoint->sendRequest();
 
-        $this->assertEquals(0, $result->getData('resultCode'));
+        $this->assertEquals(1, $result->getData('resultCode'));
         $this->assertNotEmpty($result->getData('redirectUrl'));
 
         $ch = curl_init($result->getData('redirectUrl'));

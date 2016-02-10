@@ -24,7 +24,7 @@ class Factory
     public static function getLogger(Config $config, $logLocation)
     {
         $log = new Blank();
-        if (array_key_exists($logLocation, self::$loggers)) {
+        if (!array_key_exists($logLocation, self::$loggers)) {
             if ($config->getLogEnabled()) {
                 $log = new Logger('payco');
                 $log->pushHandler(new StreamHandler($logLocation, $config->getLogLevel()));

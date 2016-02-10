@@ -144,16 +144,10 @@ class Config
      */
     public function setData(array $config)
     {
-        $reflector = new \ReflectionClass($this);
-
-        $properties = $reflector->getProperties();
-
-        foreach ($properties as $property) {
-            $key = $property->getName();
-            if (array_key_exists($key, $config)) {
-                $property->setAccessible(true);
-                $property->setValue($this, $config[$key]);
-                $property->setAccessible(false);
+        foreach($config as $key=>$value)
+        {
+            if(property_exists($this, $key)) {
+                $this->{$key} = $value;
             }
         }
 
