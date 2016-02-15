@@ -22,6 +22,8 @@ interface ProcessorInterface
      * @param $resultCode 0 means OK, any other code means error
      * @param $merchantReference Reference that was set by the merchant during the createTransaction call. Optional
      * @param $paymentInstrumentID This is the payment instrument Id that was used
+     * @param $paymentInstrumentsPageUrl This is the payment instruments page url.
+     * Which may or may not be given depending on user flow and integration mode
      * @param array $additionalInformation Optional additional info in an associative array
      * @param $message Details about an error, otherwise not present. Optional
      */
@@ -34,6 +36,7 @@ interface ProcessorInterface
         $resultCode,
         $merchantReference,
         $paymentInstrumentID,
+        $paymentInstrumentsPageUrl,
         array $additionalInformation,
         $message
     );

@@ -57,6 +57,39 @@ class HandlerTest extends \PHPUnit_Framework_TestCase
         $this->assertJsonStringEqualsJsonString($expected, $result);
 
         $data['additionalInformation'] = array('test'=>1);
+        $data['paymentInstrumentsPageUrl'] = '';
+
+        $this->assertArraySubset($processor->data, $data);
+    }
+
+    public function testSuccessfulCallBackWithOptionalParam()
+    {
+        $data = array(
+            'notificationType' => 'PAYMENT_INSTRUMENT_SELECTION',
+            'merchantID' => 10,
+            'storeID' => 'store',
+            'orderID' => 10,
+            'paymentMethod' => 'CC',
+            'resultCode' => 0,
+            'merchantReference' => 'test',
+            'additionalInformation' => '{"test":1}',
+            'paymentInstrumentID' => 1,
+            'paymentInstrumentsPageUrl' => "http://something.com",
+            'message' => 'test',
+            'salt' => "randomSalt",
+            'mac' => "5ecb4686ffc2794a6568df85627b965fa773e0ab"
+        );
+
+        $processor = new MockProcessor();
+
+        $handler = new Handler($this->config, $data, $processor);
+        $result = $handler->run();
+
+        $expected = json_encode(array('url'=>'http://something.com/success'));
+
+        $this->assertJsonStringEqualsJsonString($expected, $result);
+
+        $data['additionalInformation'] = array('test'=>1);
 
         $this->assertArraySubset($processor->data, $data);
     }

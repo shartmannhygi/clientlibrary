@@ -48,6 +48,7 @@ class Handler
         'merchantReference',
         'additionalInformation',
         'paymentInstrumentID',
+        'paymentInstrumentsPageUrl',
         'message',
     );
 
@@ -103,16 +104,17 @@ class Handler
          * Send the data to the processor
          */
         $this->processor->sendData(
-            $data['notificationType'],
-            $data['merchantID'],
-            $data['storeID'],
-            $data['orderID'],
-            $data['paymentMethod'],
-            $data['resultCode'],
-            $data['merchantReference'],
-            $data['paymentInstrumentID'],
+            $this->data['notificationType'],
+            $this->data['merchantID'],
+            $this->data['storeID'],
+            $this->data['orderID'],
+            $this->data['paymentMethod'],
+            $this->data['resultCode'],
+            $this->data['merchantReference'],
+            $this->data['paymentInstrumentID'],
+            $this->data['paymentInstrumentsPageUrl'],
             $additionalInfo,
-            $data['message']
+            $this->data['message']
         );
 
     }
