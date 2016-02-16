@@ -120,7 +120,7 @@ abstract class AbstractRequest implements RequestInterface
                 $bytes = random_bytes(self::SALT_BYTE_LENGTH);
                 $this->saltValue = bin2hex($bytes);
             } elseif (function_exists('mcrypt_create_iv')) {
-                $bytes = mcrypt_create_iv(self::SALT_BYTE_LENGTH);
+                $bytes = mcrypt_create_iv(self::SALT_BYTE_LENGTH, MCRYPT_DEV_URANDOM);
                 $this->saltValue = bin2hex($bytes);
             } elseif (function_exists('openssl_random_pseudo_bytes')) {
                 $bytes = openssl_random_pseudo_bytes(self::SALT_BYTE_LENGTH);
