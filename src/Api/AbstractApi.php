@@ -193,7 +193,7 @@ abstract class AbstractApi
         }
 
         if (!$this->requestRaw) {
-            $this->logger->debug("Processing request: " . serialize($this->requestRaw));
+            $this->logger->debug("Processing request: " . serialize($this->request));
             $this->processRequest();
         }
         $timeEnd = microtime(true);
