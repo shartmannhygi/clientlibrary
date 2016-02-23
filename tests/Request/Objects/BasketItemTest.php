@@ -5,6 +5,7 @@ namespace Upg\Library\Tests\Request\Objects;
 use Upg\Library\Request\Objects\BasketItem;
 use Upg\Library\Request\Objects\Amount;
 use Upg\Library\Risk\RiskClass;
+use Upg\Library\Basket\BasketItemType;
 use Upg\Library\Tests\Request\AbstractRequestTest;
 use Upg\Library\Validation\Validation;
 use Faker\Factory as Factory;
@@ -50,7 +51,8 @@ class BasketItemTest extends AbstractRequestTest
             ->setBasketItemID('1')
             ->setBasketItemCount(1)
             ->setBasketItemAmount($this->getBasketItemAmount())
-            ->setBasketItemRiskClass(RiskClass::RISK_CLASS_DEFAULT);
+            ->setBasketItemRiskClass(RiskClass::RISK_CLASS_DEFAULT)
+            ->setBasketItemType(BasketItemType::BASKET_ITEM_TYPE_DEFAULT);
 
         $validation = new Validation();
         $validation->getValidator($basketItem);
@@ -198,7 +200,7 @@ class BasketItemTest extends AbstractRequestTest
         );
     }
 
-    public function testBasketItemValidationCompanyRegisterType()
+    public function testBasketItemValidationRiskClass()
     {
         $basketItem = new BasketItem();
         $basketItem->setBasketItemText($this->faker->name)
@@ -219,6 +221,29 @@ class BasketItemTest extends AbstractRequestTest
             'basketItemRiskClass must certain values or be empty',
             $data,
             "basketItemRiskClass must certain values or be empty did not trigger"
+        );
+    }
+
+    public function testBasketItemValidationBasketItemType()
+    {
+        $basketItem = new BasketItem();
+        $basketItem->setBasketItemText($this->faker->name)
+            ->setBasketItemID('1')
+            ->setBasketItemCount(1)
+            ->setBasketItemAmount($this->getBasketItemAmount())
+            ->setBasketItemRiskClass(RiskClass::RISK_CLASS_DEFAULT)
+            ->setBasketItemType('foo');
+
+        $validation = new Validation();
+        $validation->getValidator($basketItem);
+        $data = $validation->performValidation();
+
+        $this->assertValidationReturned(
+            'Upg\\Library\\Request\\Objects\\BasketItem',
+            'basketItemType',
+            'basketItemType must certain values or be empty',
+            $data,
+            "basketItemType must certain values or be empty did not trigger"
         );
     }
 }

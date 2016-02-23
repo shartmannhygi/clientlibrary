@@ -39,9 +39,15 @@ class BasketItem extends AbstractObject
 
     /**
      * @var int Risk class of basket item
-     * @see RiskClass
+     * @see \Upg\Library\Risk\RiskClass
      */
     private $basketItemRiskClass;
+
+    /**
+     * @var string The basket item type
+     * @see \Upg\Library\Basket\BasketItemType
+     */
+    private $basketItemType;
 
     /**
      * Set the basket Item Text
@@ -143,6 +149,28 @@ class BasketItem extends AbstractObject
         return $this->basketItemRiskClass;
     }
 
+    /**
+     * Set the Basket Item Type
+     * @see BasketItem::$basketItemType
+     * @param $basketItemType
+     * @return $this
+     */
+    public function setBasketItemType($basketItemType)
+    {
+        $this->basketItemType = $basketItemType;
+        return $this;
+    }
+
+    /**
+     * Return the basket item type value
+     * @see BasketItem::$basketItemType
+     * @return string
+     */
+    public function getBasketItemType()
+    {
+        return $this->basketItemType;
+    }
+
     public function toArray()
     {
         $return = array(
@@ -157,6 +185,10 @@ class BasketItem extends AbstractObject
 
         if ($this->basketItemRiskClass) {
             $return['basketItemRiskClass'] = $this->getBasketItemRiskClass();
+        }
+
+        if($this->basketItemType) {
+            $return['basketItemType'] = $this->getBasketItemType();
         }
 
         return $return;
@@ -206,6 +238,13 @@ class BasketItem extends AbstractObject
             'name' => 'Callback',
             'value' => 'Upg\Library\Risk\RiskClass::validateRiskClass',
             'message' => "basketItemRiskClass must certain values or be empty"
+        );
+
+        //basketItemType
+        $validationData['basketItemType'][] = array(
+            'name' => 'Callback',
+            'value' => 'Upg\Library\Basket\BasketItemType::validateBasketItemType',
+            'message' => "basketItemType must certain values or be empty"
         );
 
         return $validationData;
