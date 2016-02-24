@@ -65,6 +65,12 @@ class Codes
      */
     const TAG_LOCALE = "LOCALE";
 
+    /**
+     * Locale : Portuguese - Português
+     * @link http://www.manula.com/manuals/payco/payment-api/hostedpagesdraft/en/topic/supported-languages
+     */
+    const LOCALE_PT = "PT";
+
     public static function validateLocale($value)
     {
         return Constants::validateConstant(__CLASS__, $value, static::TAG_LOCALE);
