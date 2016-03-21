@@ -5,7 +5,7 @@
     "require": {
         "php": ">=5.3",
         "monolog/monolog": "1.17.2",
-        "siriusphp/validation": "2.x"
+        "siriusphp/validation": "dev-master"
     },
     "repositories": [
         {
