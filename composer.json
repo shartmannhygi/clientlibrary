@@ -5,14 +5,8 @@
     "require": {
         "php": ">=5.3",
         "monolog/monolog": "1.17.2",
-        "siriusphp/validation": "dev-master"
+        "siriusphp/validation": "2.x"
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/edmondscommerce/validation"
-        }
-    ],
     "require-dev": {
         "phpunit/phpunit": "~4.6",
         "fzaninotto/faker": "1.x",
