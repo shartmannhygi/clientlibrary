@@ -1,9 +1,9 @@
-# Payco Client Library for PHP #
+# UPG Client Library for PHP #
 
 [![Build Status](https://travis-ci.org/UPGcarts/clientlibrary.svg?branch=master)](https://travis-ci.org/UPGcarts/clientlibrary)
 [![Codacy Badge](https://api.codacy.com/project/badge/grade/7710d14f3d9f4f54bc4cb1892f19cce3)](https://www.codacy.com/app/christine-jamieson/clientlibrary)
 
-PHP Client Library for the Payco API.
+PHP Client Library for the UPG API.
 Based on the API Documentation found here: https://www.manula.com/manuals/payco/payment-api/hostedpagesdraft/en/topic/introduction
 
 ## Current Issues ##
@@ -26,7 +26,7 @@ $config = new Upg\Library\Config($configData);
 The fields for the config that must be provided are:
 
  * ['merchantPassword'] *string* This is the merchant password for mac calculation
- * ['merchantID'] *string* This is the merchantID assigned by PayCo.
+ * ['merchantID'] *string* This is the merchantID assigned by UPG.
  * ['storeID'] *string* This is the store ID of a merchant.
  * ['logEnabled'] *bool* Should logging be enabled
  * ['logLevel'] *int* Log level See class constants for possible values
@@ -158,7 +158,7 @@ The processor object should implement `sendData` to get data from the handler an
 
 The processor callback should avoid processing the request, instead it should save it to a database for asynchronous processing via a cron script.
 
-Please note the MNS call must always return a 200 response to Payco otherwise no other MNS would be sent until a given MNS notification is accepted with a HTTP 200 response.
+Please note the MNS call must always return a 200 response to UPG otherwise no other MNS would be sent until a given MNS notification is accepted with a HTTP 200 response.
 
 ### Working with PayCoBridge.js ###
 Please note this plugin does not provide any javascript libraries for the paybridge. Integrations using paybridge are expected to implement the javascript library. However, this library can be used to implement the server side functionality for any paybridge integrations, using PHP on the backend.
