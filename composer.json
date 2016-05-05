@@ -4,7 +4,7 @@
     "keywords": ["payco", "library"],
     "require": {
         "php": ">=5.3",
-        "monolog/monolog": "<1.18",
+        "monolog/monolog": ">=1.16.0,<1.18",
         "siriusphp/validation": "dev-master"
     },
     "repositories": [
