@@ -140,7 +140,7 @@ This takes in the following for the constructor:
 
 The processor should implement two methods:
 `sendData` which the handler uses to pass data to the processor to use and another method called `run`, which will get invoked to handle call back processing.
-This processor should return a string which contains a URL where the user should be redirected to after Payco has processed the transaction.
+This processor should return a string which contains a URL where the user should be redirected to after UPG has processed the transaction.
 
 To run the handler simply call the `run` method on the object. Please note the following exceptions can be raised in which case the store must still send a URL, but respond with a non 200 HTTP result code to indicate there has been an issue. The following exceptions may be raised:
  * Upg\Library\Callback\Exception\ParamNotProvided : If a required parameter is not provided

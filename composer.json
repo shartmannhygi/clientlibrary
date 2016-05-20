@@ -1,7 +1,7 @@
 {
     "name": "upgplc/php-clientlibrary",
     "description": "The Client Library for Payco",
-    "keywords": ["payco", "library"],
+    "keywords": ["Upg", "library"],
     "require": {
         "php": ">=5.3",
         "monolog/monolog": ">=1.16.0,<1.18",
