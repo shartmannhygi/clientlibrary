@@ -178,4 +178,4 @@ This is very easy to set up in PHPStorm by using PHP-Codesniffer. To configure P
 3. On configuration option click the ... button and in that prompt point PHPStorm to the path of Code Sniffer
 4. To set the code style navigate to Editor -> Code Style -> PHP
 5. In the setting click on Set From and go to Predefined Style -> PSR1/PSR2
-6. Click on OK
+6. Click on the OK button
