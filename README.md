@@ -33,7 +33,7 @@ The fields for the config that must be provided are:
  * ['logLocationMain'] *string* Main log location file path
  * ['logLocationRequest'] *string* Log location file path for API requests
  * ['defaultRiskClass'] *string* Default risk class
- * ['defaultLocale'] *string* Default locale (see [Supported Languages](http://www.manula.com/manuals/payco/payment-api/hostedpagesdraft/en/topic/supported-languages))
+ * ['defaultLocale'] *string* Default locale (see [Supported Languages](http://documentation.upgplc.com/hostedpagesdraft/en/topic/supported-languages))
  * ['sendRequestsWithSalt'] *bool* Automatically add salt to requests. In live this should be set to true and not false. However, for testing this can be false. By default this will be true if not specified.
  * ['baseUrl'] *string* Base URL of requests that should contain either https://www.payco-sandbox.de/2.0 or https://www.pay-co.net/2.0
 
@@ -44,7 +44,7 @@ E.g. `\Psr\Log\LogLevel::ALERT`
 ### Starting an API request ###
 The Library for requests is split in three parts:
 **Upg\Library\Request** contains the request classes.
-**Upg\Library\Request\Objects** contains classes for the JSON objects that are documented in the API docs (see [JSON-Objects](http://www.manula.com/manuals/payco/payment-api/hostedpagesdraft/en/topic/json-objects)).
+**Upg\Library\Request\Objects** contains classes for the JSON objects that are documented in the API docs.
 If a request has a property that requires a JSON object please pass in the appropriately populated **Upg\Library\Request\Objects** class for that property.
 
 All properties in the request and JSON objects have getters and setters. For example, to set a field called userType on
