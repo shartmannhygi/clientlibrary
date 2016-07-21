@@ -4,7 +4,7 @@
     "keywords": ["Upg", "library"],
     "require": {
         "php": ">=5.3",
-        "monolog/monolog": ">=1.16.0,<1.18.1",
+        "monolog/monolog": ">=1.16.0,<=1.18.1",
         "siriusphp/validation": "dev-master"
     },
     "repositories": [
